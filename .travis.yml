@@ -11,7 +11,7 @@ before_install:
 scripts:
   - docker run -e CI=true yash028/react-test npm run test
 
-after_install:
+after_success:
   - docker build -t yash028/multi-client ./client
   - docker build -t yash028/multi-nginx ./nginx
   - docker build -t yash028/multi-server ./server
