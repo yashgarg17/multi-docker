@@ -1,0 +1,23 @@
+sude: required
+
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker build -t yash028/react-test -f ./client/Dockerfile.dev ./client
+
+scripts:
+  - docker run -e CI=true yash028/react-test npm run test
+
+after_install:
+  - docker build -t yash028/multi-client ./client
+  - docker build -t yash028/multi-nginx ./nginx
+  - docker build -t yash028/multi-server ./server
+  - docker build -t yash028/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push yash028/multi-client
+  - docker push yash028/multi-nginx
+  - docker push yash028/multi-server
+  - docker push yash028/multi-worker
