@@ -1,36 +1,36 @@
 {
     "AWSEBDockerrunVersion": 2,
     "containerDefinitions": [
-        {
-            "name": "client",
-            "image": "yash028/multi-client",
-            "hostname": "client",
-            "essential": false
-        },
-        {
-            "name": "server",
-            "image": "yash028/multi-server",
-            "hostname": "api",
-            "essential": false
-        },
-        {
-            "name": "worker",
-            "image": "yash028/multi-worker",
-            "hostname": "worker",
-            "essential": false
-        },
-        {
-            "name": "nginx",
-            "image": "yash028/multi-nginx",
-            "hostname": "nginx",
-            "essential": true,
-            "portMappings": [
-                {
-                    "hostPort": 80,
-                    "containerPort": 80
-                }
-            ],
-            "links": ["client", "server"]
-        }
+      {
+        "name": "client",
+        "image": "stephengrider/multi-client",
+        "hostname": "client",
+        "essential": false
+      },
+      {
+        "name": "server",
+        "image": "stephengrider/multi-server",
+        "hostname": "api",
+        "essential": false
+      },
+      {
+        "name": "worker",
+        "image": "stephengrider/multi-worker",
+        "hostname": "worker",
+        "essential": false
+      },
+      {
+        "name": "nginx",
+        "image": "stephengrider/multi-nginx",
+        "hostname": "nginx",
+        "essential": true,
+        "portMappings": [
+          {
+            "hostPort": 80,
+            "containerPort": 80
+          }
+        ],
+        "links": ["client", "server"]
+      }
     ]
-}
+  }
